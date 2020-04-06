@@ -59,4 +59,14 @@ class LinkedArrayTest {
 		assertNull(s);
 	}
 	
+	@Test
+	void tryGetElementNegativeIndexGotNull() {
+		la.add("Item0");
+		la.add("Item1");
+		la.add("Item3");
+		String s = la.get(-1);
+		assertNull(s);
+		s = la.get(-3);
+		assertNull(s);
+	}
 }

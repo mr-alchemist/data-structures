@@ -1,28 +1,32 @@
 package storage;
 
-public class LinkedArray<T> /*implements IDynamicArray<T>*/ {
-	private Queue<T> queue;
-	private int size;
+import java.util.Iterator;
+
+public class LinkedArray<T> implements IDynamicArray<T>, Iterable<T> {
+	Queue<T> queue;
 	
 	public LinkedArray() {
 		queue = new Queue<T>();
-		size = 0;
 	}
 	
-	//@Override
+	@Override
 	public int size() {
-		return size;
+		return queue.size();
 	}
 	
-	//@Override
+	@Override
 	public void add(T item) {
 		queue.enqueue(item);
-		size++;
 	}
 	
-	//@Override
+	@Override
+	public void add(T item, int index) {
+		queue.insert(item, index);
+	}
+	
+	@Override
 	public T get(int index) {
-		if(index >= size() )
+		if(index >= size() || index < 0)
 			return null;
 		
 		Node<T> curr = queue.getHead();
@@ -30,6 +34,22 @@ public class LinkedArray<T> /*implements IDynamicArray<T>*/ {
 			curr = curr.getNext();
 		
 		return curr.getItem();
+	}
+	
+	@Override
+	public T remove(int index) {
+		if(index >= size() || index < 0)throw new IndexOutOfBoundsException();
+		Iterator<T> iterator = iterator();
+		T current = null;
+		for(int j = 0; j < (index + 1); j++)
+			current = iterator.next();
+		return current;
+	}
+	
+	
+	@Override
+	public Iterator<T> iterator() {
+		return new LinkedArrayIterator<T>(this);
 	}
 	
 	
