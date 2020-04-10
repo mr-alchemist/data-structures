@@ -1,9 +1,15 @@
 import storage.*;
+import storage.hashtable.HashTable;
 
 public class Program {
 
 	public static void main(String[] args) {
-		
+		Program pr = new Program();
+		//pr.run();
+		pr.hashTableDemo();
+	}
+	
+	void run() {
 		SingleArray<String> singleArray = new SingleArray<String>();
 		VectorArray<String> vectorArray = new VectorArray<String>();
 		FactorArray<String> factorArray = new FactorArray<String>();
@@ -48,10 +54,9 @@ public class Program {
 			System.out.println(s);
 			s = pq.dequeue();
 		}*/
-		
 	}
 	
-	static void addValues(IDynamicArray<String> array, int count) {
+	void addValues(IDynamicArray<String> array, int count) {
 		long start = System.currentTimeMillis();
 		for(int i = 0; i < count; i++) 
 			array.add(i + "");
@@ -61,7 +66,7 @@ public class Program {
 		
 	}
 	
-	static void getValues(IDynamicArray<String> array, int count) {
+	void getValues(IDynamicArray<String> array, int count) {
 		long start = System.currentTimeMillis();
 		
 		int repeat = 1;
@@ -83,7 +88,7 @@ public class Program {
 		
 	}
 	
-	static void addValues3(IDynamicArray<String> array, int count) {
+	void addValues3(IDynamicArray<String> array, int count) {
 		long start = System.currentTimeMillis();
 		for(int i = 0; i < count; i++) 
 			array.add(i + "",count);
@@ -93,7 +98,7 @@ public class Program {
 		
 	}
 	
-	static void addValues2(IDynamicArray<String> array, int count) {
+	void addValues2(IDynamicArray<String> array, int count) {
 		long start = System.currentTimeMillis();
 		for(int i = 0; i < count; i++) 
 			array.add(i + "", 0);
@@ -103,6 +108,33 @@ public class Program {
 		
 	}
 	
+	void hashTableDemo() {
+		HashTable<String> ht = new HashTable<String>(1000);
+		int n = 1_000_000;
+		addValuesToHashTable(ht, n);
+		getHTValues(ht, n);
+		System.out.println("item with key=" + 124 + ": " + ht.find(124));
+		System.out.println("item with key=" + 789 + ": " + ht.find(789));
+		System.out.println("item with key=" + 7890 + ": " + ht.find(7890));
+	}
 	
+	void addValuesToHashTable(HashTable<String> ht, int count) {
+		long start = System.currentTimeMillis();
+		for(int i = 0; i < count; i++) 
+			ht.insert(i, "Item" + i);
+		
+		long duration = System.currentTimeMillis() - start;
+		System.out.println("add: " + ht + " " + count + " " + duration + " ms");
+	}
+	
+	void getHTValues(HashTable<String> ht, int count) {
+		long start = System.currentTimeMillis();
+		
+		for(int i = 0; i < count; i++) 
+			ht.find(i);
+		
+		long duration = System.currentTimeMillis() - start;
+		System.out.println("get: "+ ht + " " + count + " " + duration + " ms");
+	}
 	
 }
