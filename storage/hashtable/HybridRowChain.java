@@ -16,7 +16,7 @@ public class HybridRowChain<T> implements IHTRowChain<T> {
 	@Override
 	public boolean add(int key, T value) {
 		boolean res = chain.add(key, value);
-		if(chain.size() == 2 && chain.getClass().getName().equals("LListRowChain")) {
+		if(chain.size() == 32 && chain.getClass().getName().equals("storage.hashtable.LListRowChain")) {
 			transformListToTree();
 		}
 		return res;

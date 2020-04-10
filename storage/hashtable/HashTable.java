@@ -19,7 +19,7 @@ public class HashTable<T> {
 	}
 	
 	public HashTable(int tableSize) {
-		this(tableSize, new LListChainStrategy<T>());
+		this(tableSize, new HybridChainStrategy<T>());
 	}
 	public HashTable(int tableSize, IHTChainStrategy<T> chainStrategy) {
 		//TODO проверка аргументов

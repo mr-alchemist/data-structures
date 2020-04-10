@@ -1,16 +1,16 @@
 package storage.hashtable;
 
 import java.util.Iterator;
-import java.util.LinkedList;
+//import java.util.LinkedList;
 
-//import storage.LinkedArray;
+import storage.LinkedArray;
 
 public class LListRowChain<T> implements IHTRowChain<T>, Iterable<KeyValuePair<T>> {
-	//LinkedArray<KeyValuePair<T>> list;
-	LinkedList<KeyValuePair<T>> list;
+	LinkedArray<KeyValuePair<T>> list;
+	//LinkedList<KeyValuePair<T>> list;
 	public LListRowChain() {
-		//list = new LinkedArray<KeyValuePair<T>>();
-		list = new LinkedList<KeyValuePair<T>>();
+		list = new LinkedArray<KeyValuePair<T>>();
+		//list = new LinkedList<KeyValuePair<T>>();
 	}
 	@Override
 	public int size() {
